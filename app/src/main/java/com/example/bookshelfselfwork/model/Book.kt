@@ -11,11 +11,12 @@ data class BookShelf(
 
 @Serializable
 data class Book(
-    val id: Int,
-    val imageLinks : ImageLinks
+    val kind: String,
+    val id: String,
+    val imageLinks : ImageLinks = ImageLinks()
 )
 
 @Serializable
 data class ImageLinks(
-    val thumbnail: String
+    val thumbnail: String = ""
 )

@@ -1,5 +1,6 @@
 package com.example.bookshelfselfwork.ui.screen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +24,7 @@ import com.example.bookshelfselfwork.model.Book
 @Composable
 fun BookShelfScreen(
     bookShelfUiState: BookShelfUiState,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ){
     when(bookShelfUiState){
         is BookShelfUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
@@ -54,7 +55,7 @@ fun BookCard(book: Book, modifier: Modifier) {
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
-                .data(book.imageLinks.thumbnail)
+                .data(book.imageLinks.thumbnail.replace("http", "https"))
                 .crossfade(true)
                 .build(),
             contentScale = ContentScale.Crop,

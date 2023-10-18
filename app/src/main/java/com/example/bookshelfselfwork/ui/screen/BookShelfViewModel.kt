@@ -1,5 +1,6 @@
 package com.example.bookshelfselfwork.ui.screen
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,8 +29,10 @@ class BookShelfViewModel(private val bookShelfRepository: BookShelfRepository) :
                 var result = bookShelfRepository.getBooks()
                 BookShelfUiState.Success(result)
             } catch (e: IOException) {
+                Log.d("MyApp IOException", e.message.toString())
                 BookShelfUiState.Error
             } catch (e: HttpException) {
+                Log.d("MyApp HttpException", e.message.toString())
                 BookShelfUiState.Error
             }
         }
