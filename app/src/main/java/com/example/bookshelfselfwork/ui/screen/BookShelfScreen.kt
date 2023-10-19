@@ -53,9 +53,11 @@ fun BookCard(book: Book, modifier: Modifier) {
     Card(
         modifier = modifier
     ) {
+        val imageLink = book.imageLinks.thumbnail;
+        Log.d("BookCard", imageLink)
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
-                .data(book.imageLinks.thumbnail.replace("http", "https"))
+                .data(imageLink)
                 .crossfade(true)
                 .build(),
             contentScale = ContentScale.Crop,

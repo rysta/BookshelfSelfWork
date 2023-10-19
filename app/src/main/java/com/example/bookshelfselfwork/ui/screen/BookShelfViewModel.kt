@@ -27,12 +27,16 @@ class BookShelfViewModel(private val bookShelfRepository: BookShelfRepository) :
             uiState = BookShelfUiState.Loading
             uiState = try {
                 var result = bookShelfRepository.getBooks()
+                Log.d("getBooks", result.count().toString())
                 BookShelfUiState.Success(result)
             } catch (e: IOException) {
                 Log.d("MyApp IOException", e.message.toString())
                 BookShelfUiState.Error
             } catch (e: HttpException) {
                 Log.d("MyApp HttpException", e.message.toString())
+                BookShelfUiState.Error
+            } catch (e: Exception){
+                Log.d("MyApp Exception", e.message.toString())
                 BookShelfUiState.Error
             }
         }

@@ -10,5 +10,15 @@ interface BookShelfRepository{
 class NetworkBookShelfRepository(
     private val apiClient: ApiClient
 ) : BookShelfRepository{
-    override suspend fun getBooks(): List<Book> = apiClient.getJazzBooks().items.filter{ it -> it.imageLinks.thumbnail != "" }
+    override suspend fun getBooks(): List<Book>{
+        val bookShelf = apiClient.getJazzBooks();
+        var books = mutableListOf<Book>()
+
+        bookShelf.items.forEach{
+            item ->
+                var book = apiClient.getBook(item.id)
+                books.add(Book( book.kind, book.id, book.volumeInfo.imageLinks  ))
+        }
+        return books
+    }
 }

@@ -17,6 +17,18 @@ data class Book(
 )
 
 @Serializable
+data class JazzBook(
+    val id: String,
+    val kind: String,
+    val volumeInfo: VolumeInfo
+)
+
+@Serializable
+data class VolumeInfo(
+    val imageLinks : ImageLinks
+)
+
+@Serializable
 data class ImageLinks(
     val thumbnail: String = ""
 )
