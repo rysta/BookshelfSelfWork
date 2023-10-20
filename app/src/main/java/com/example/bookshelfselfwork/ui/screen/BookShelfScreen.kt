@@ -53,7 +53,7 @@ fun BookCard(book: Book, modifier: Modifier) {
     Card(
         modifier = modifier
     ) {
-        val imageLink = book.imageLinks.thumbnail;
+        val imageLink = book.imageLinks.thumbnail.replace("http", "https");
         Log.d("BookCard", imageLink)
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
